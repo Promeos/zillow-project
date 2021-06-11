@@ -1,20 +1,8 @@
-# Zillow Project
+# What's the Asking Price?
 
-## __Robust Analytics™__
+# Executive Summary
 
-__Anthony Straine__<br>
-Junior Data Scientist
-
-__Christopher Ortiz__<br>
-Junior Data Scientist
-
-## Description
-
-Predict the market value of single unit properties using properties that were sold in May and June of 2017.
-
-## Summary
-
-Working together we discovered for our MVP that the features that appear to drive home value as measure by taxvaluedollarcnt are bathroomcnt, bedroomcnt, calculatedfinishedsquarefeet. We discovered this by going through an iterative, manual process of feature selection using a Pearson's R correlation test to select the top two features of bathroomcnt and calculatedfinishedsquarefeet and using industry knowledge to also include calculatedfinishedsquarefeet and homes having more than 2 bathrooms.
+Features that appear to drive home value as measure by taxvaluedollarcnt are bathroomcnt, bedroomcnt, calculatedfinishedsquarefeet. We discovered this by going through an iterative, manual process of feature selection using a Pearson's R correlation test to select the top two features of bathroomcnt and calculatedfinishedsquarefeet and using industry knowledge to also include calculatedfinishedsquarefeet and homes having more than 2 bathrooms.
 
 After testing a few models, a polynomial model performed the best. Features used in our model:
 - bathroomcnt
@@ -25,8 +13,8 @@ After testing a few models, a polynomial model performed the best. Features used
 These features explain 38% of the variance in the tax value dollar amount. For our next iteration we will look at additional features while controlling for outliers.
 
 ## Data Dictionary
-
-| Feature | Definition | Data Type | 
+`train.csv`
+| Feature Name | Definition | Data Type | 
 | --- | --- | --- |
 | id | row index number, range: 0 - 2985216 | int64 |
 | parcelid | Unique numeric id assigned to each property: 10711725 - 169601949  | int64 |
@@ -46,56 +34,42 @@ These features explain 38% of the variance in the tax value dollar amount. For o
 | taxvaluedollarcnt |The total tax assessed value of the parcel | float64 |
 
 
-## Project Organization
-```
-├── README.md           <- The top-level README for developers using this project.
-│
-│
-├── mvp.ipynb           <- The main notebook for the project
-│
-│
-├── acquire.py          <- The script to download or generate data
-│
-├── prepare.py          <- The script for preparing the raw data
-│
-├── wrangle.py          <- The script for preparing the raw data for exploration
-│
-├── model.py            <- The script for preprocessing, modeling, and interpreting
-```
+## Project Steps
+### 1. Acquire
+- _ dataset acquired from Zillow.
 
-## Requirements
-- numpy >= 1.1.2
-- pandas >= 1.18.1
-- scipy >=1.4.1
-- sklearn >= 0.23.2
-- matplotlib >= 3.3.1
-- seaborn >= 0.11.0
+### 2. Prepare
 
-## Setup
-1. Download a zip file of the repository [here](https://github.com/Robust-Analytics/zillow-project/archive/main.zip)
+**Feature Engineering**
 
-2. Clone this repository using:
-```
-$ git clone git@github.com:Robust-Analytics/zillow-project.git
-```
+**Preprocessing**
 
-To open the file in a jupyter notebook use following code:
-``` python
-import pandas as pd
-df = pd.read_csv('zillow.csv')
-```
 
-## Acknowledgements
-- Codeup Data Science Team
-- Darden Cohort
-- Generated with [ryans_codeup_data_science_mvp](https://github.com/RyanMcCall/-ryans_codeup_data_science_mvp)
+### 3. Explore
+- Created a
 
-## Contact
-How to reach Anthony
-- [@DataStraine](https://twitter.com/datastraine)
-- 📫 anthony.straine@gmail.com
+#### Hypothesis Tests
+__To be, or not to be, that is the question?__
+> 𝐻0: Null.
+> 
+> 𝐻1: Alternative.
+>
+> Outcome: Reject the null hypothesis
+<br>
 
-How to reach Chris
-- [@Promeos42](https://twitter.com/Promeos42)
-- 📫 christopher.logan.ortiz@gmail.com
+### 4. Model
+- Baseline Model Accuracy is X%
+- _ Regression Model Accuracy is X%
+- The _ Regression Model outperformed the Baseline by X%
 
+
+### 5. Conclusion
+
+### 6. Future Investigations
+
+
+## How to Reproduce
+All files are reproducible and available for download and use.
+- [x] Read this README.md
+- [ ] Clone this repository
+- [ ] Run Final-Report.ipynb
