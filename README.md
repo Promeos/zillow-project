@@ -1,4 +1,4 @@
-# What's the Asking Price?
+<img src="./visuals/zillow-header.png"/>
 
 # Executive Summary
 
