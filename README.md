@@ -2,16 +2,6 @@
 
 # Executive Summary
 
-Features that appear to drive home value as measure by taxvaluedollarcnt are bathroomcnt, bedroomcnt, calculatedfinishedsquarefeet. We discovered this by going through an iterative, manual process of feature selection using a Pearson's R correlation test to select the top two features of bathroomcnt and calculatedfinishedsquarefeet and using industry knowledge to also include calculatedfinishedsquarefeet and homes having more than 2 bathrooms.
-
-After testing a few models, a polynomial model performed the best. Features used in our model:
-- bathroomcnt
-- bedroomcnt
-- calculatedfinishedsquarefeet
-- taxvaluedollarcnt
-
-These features explain 38% of the variance in the tax value dollar amount. For our next iteration we will look at additional features while controlling for outliers.
-
 ## Data Dictionary
 `train.csv`
 | Feature Name | Definition | Data Type | 
