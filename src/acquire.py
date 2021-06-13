@@ -21,44 +21,40 @@ def get_zillow_data():
     
     sql_query = '''
     WITH pred2017 AS (
-    SELECT id,
-        parcelid AS parcel_id,
+    SELECT parcelid AS parcel_id,
         LAST_VALUE(logerror)
-        OVER (PARTITION BY parcelid ORDER BY transactiondate) AS log_error,
+            OVER (PARTITION BY parcelid ORDER BY transactiondate
+            ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS log_error,
         LAST_VALUE(transactiondate)
-        OVER (PARTITION BY parcelid ORDER BY transactiondate) AS transaction_date
+            OVER (PARTITION BY parcelid ORDER BY transactiondate
+            ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS transaction_date
     FROM predictions_2017
-    WHERE transactiondate BETWEEN '2017-05-01' AND '2017-06-30'
-    ORDER BY id, parcelid),
+    WHERE transactiondate BETWEEN '2017-05-01' AND '2017-07-31'
+    ORDER BY id, parcelid)
 
-    prop2017 AS (SELECT id,
-        parcelid AS parcel_id,
+    SELECT id,
+        transaction_date,
+        parcel_id,
         bathroomcnt AS baths,
         bedroomcnt AS beds,
         finishedsquarefeet12 AS sqft,
+        lotsizesquarefeet AS lot_sqft,
         fips,
         latitude,
         longitude,
-        lotsizesquarefeet AS lot_sqft,
-        propertycountylandusecode AS county_land_code,
-        propertylandusetypeid AS property_land_code,
-        regionidcity AS region_city_id,
-        regionidcounty AS region_county_id,
         regionidzip AS region_zip_id,
         yearbuilt AS year_built,
         landtaxvaluedollarcnt AS land_tax_value,
-        taxamount AS tax_amount
-    FROM properties_2017
-    WHERE propertylandusetypeid IN (261, 262, 273)
-    ORDER BY id, parcelid)
-
-    SELECT *
-    FROM prop2017 AS p1
+        taxamount AS tax_amount,
+        log_error
+    FROM properties_2017 AS p1
     JOIN pred2017 AS p2
-    ON p2.parcel_id = p1.parcel_id;
+    ON p2.parcel_id = p1.parcelid
+    WHERE propertylandusetypeid IN (261, 262, 273)
+    ORDER BY id, parcelid;
     '''
         
-    filename = './data/zillow.csv'
+    filename = './data/raw/zillow.csv'
     
     if os.path.isfile(filename):
         return pd.read_csv(filename)
