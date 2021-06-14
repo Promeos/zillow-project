@@ -48,8 +48,8 @@ def get_zillow_data():
         taxamount AS tax_amount,
         log_error
     FROM properties_2017 AS p1
-    JOIN pred2017 AS p2
-    ON p2.parcel_id = p1.parcelid
+    INNER JOIN pred2017 AS p2
+    ON p1.parcelid = p2.parcel_id
     WHERE propertylandusetypeid IN (261, 262, 273)
     ORDER BY id, parcelid;
     '''
